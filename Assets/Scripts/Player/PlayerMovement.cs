@@ -4,29 +4,32 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerMovement : MonoBehaviour, IMovable
 {
-    [SerializeField] private float _speed;
+    [SerializeField] private float _speedForward;
+    [SerializeField] private float _speedSide;
     [SerializeField] private float _speedRotate;
     [SerializeField] private SplineFollower _spline;
     [SerializeField] private float _limitation;
-    [SerializeField] private SplineFollower _cameraSpline;
     [SerializeField] private float _flySpeed;
-    
+
     private PlayerInput _playerInput;
-    private bool isMove=true;
+    private bool isMove = true;
+
+    public float SpeedForward => _speedForward;
 
     private void Start()
     {
+        _spline.followSpeed = _speedForward;
         _playerInput = GetComponent<PlayerInput>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         AllowMoveAndRotate();
     }
 
     public void Move(float direction)
     {
-        var offset = direction * _speed * Time.deltaTime;
+        var offset = direction * _speedSide * Time.deltaTime;
         var motionOffset = _spline.motion.offset;
         motionOffset.x += offset;
         motionOffset.x = Mathf.Clamp(motionOffset.x, -_limitation, _limitation);
@@ -38,10 +41,9 @@ public class PlayerMovement : MonoBehaviour, IMovable
         isMove = false;
     }
 
-    public void StartFly()
+    public void StartFly(SplineFollower splineFollower)
     {
-        _spline.followSpeed = _flySpeed;
-        _cameraSpline.followSpeed = _spline.followSpeed;
+        splineFollower.followSpeed = _flySpeed;
     }
     
     private void Rotate(float axis)
@@ -56,8 +58,8 @@ public class PlayerMovement : MonoBehaviour, IMovable
     {
         if (isMove)
         {
-            Move( _playerInput.Movement);
-            Rotate( _playerInput.Movement);
+            Move(_playerInput.Movement);
+            Rotate(_playerInput.Movement);
         }
     }
 }
