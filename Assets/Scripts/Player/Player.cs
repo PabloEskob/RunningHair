@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     { 
-        other.GetComponent<Item>().Destoy();
+        other.TryGetComponent(out Item item);
+        item.Destoy();
     }
 }
