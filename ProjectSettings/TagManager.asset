@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Hair
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Hair
   - Water
   - UI
   - 

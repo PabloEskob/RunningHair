@@ -1,27 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnPoints : MonoBehaviour
+public class CreatePoints : MonoBehaviour
 {
-    [SerializeField] private Hair _hair;
+    [SerializeField] private float _radiusHair;
 
     private float _radius;
-    private float _radiusHair;
-    private List<Vector3> _position = new List<Vector3>();
     private Vector3 _originPosition;
     private float _possibleCount;
 
-    private void Start()
+    public List<Vector3> FindPlaceWithCircle()
     {
         _radius = gameObject.transform.localScale.z;
-        _radiusHair = _hair.GetComponent<SkinnedMeshRenderer>().bounds.extents.x;
         _originPosition = transform.position;
-        FindPlaceWithCircle();
-        indsa();
-    }
-
-    private void FindPlaceWithCircle()
-    {
+        List<Vector3> _position = new List<Vector3>();
         Vector3 point = _originPosition;
         float distanceRing = Mathf.PI * 2 * _radius;
         var angle = 360 * Mathf.Deg2Rad;
@@ -44,14 +36,7 @@ public class SpawnPoints : MonoBehaviour
             _radius -= _radiusHair;
             distanceRing = Mathf.PI * 2 * _radius;
         }
-    }
 
-    private void indsa()
-    {
-        foreach (var VARIABLE in _position)
-        {
-          var ds=  Instantiate(_hair, VARIABLE, Quaternion.identity);
-          ds.transform.parent = gameObject.transform;
-        }
+        return _position;
     }
 }
