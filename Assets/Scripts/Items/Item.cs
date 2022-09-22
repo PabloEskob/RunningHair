@@ -12,7 +12,7 @@ public abstract class Item : MonoBehaviour
 
     private void StartParticles()
     {
-        var partical = Instantiate(_particleSystem, gameObject.transform.position, Quaternion.identity);
-        partical.Play();
+        var particle = Instantiate(_particleSystem, gameObject.transform.position, Quaternion.identity);
+        particle.Play();
     }
 }

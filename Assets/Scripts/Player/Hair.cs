@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterJoint),typeof(Rigidbody))]
@@ -12,8 +13,9 @@ public class Hair : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private HairTip _hairTips;
-
+    
     public GameObject hairUp => _hairUp;
+    public HairTip HairTip => _hairTips;
 
     private void Awake()
     {
@@ -22,7 +24,6 @@ public class Hair : MonoBehaviour
 
     private void Start()
     {
-        AssighIntialRotation();
         AssighIntialScale();
         CreateHairTip();
     }
@@ -36,6 +37,13 @@ public class Hair : MonoBehaviour
     {
         Destroy(_hairTips.gameObject);
     }
+    
+    public Quaternion AssighIntialRotation()
+    {
+        var transfomRotate = transform.rotation;
+        transfomRotate.x = Random.Range(-_rotateValue, _rotateValue);
+        return transfomRotate;
+    }
 
     public void Join(Rigidbody hair)
     {
@@ -46,6 +54,12 @@ public class Hair : MonoBehaviour
     public void ReduceWeightRigidbody(int maxMass)
     {
         _rigidbody.mass = maxMass;
+    }
+
+    public void SetColorMaterial(Material material)
+    {
+        GetComponent<Renderer>().material = material;
+        _hairTips.SetColorMaterial(material);
     }
 
     private void CreateHairTip()
@@ -60,12 +74,5 @@ public class Hair : MonoBehaviour
         var transformLocalScale = transform.localScale;
         transformLocalScale.y = Random.Range(_minScale, _maxScale);
         transform.localScale = transformLocalScale;
-    }
-
-    private void AssighIntialRotation()
-    {
-        var transfomRotate = transform.rotation;
-        transfomRotate.x = Random.Range(-_rotateValue, _rotateValue);
-        transform.rotation = transfomRotate;
     }
 }

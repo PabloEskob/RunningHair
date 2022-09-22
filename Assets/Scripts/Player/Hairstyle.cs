@@ -26,7 +26,8 @@ public class Hairstyle : MonoBehaviour
 
         foreach (var position in cratePoint)
         {
-            var hair = Instantiate(_hair, position , Quaternion.identity);
+            var hair = Instantiate(_hair, position, _hair.AssighIntialRotation());
+            _hairsList.Add(hair);
             hair.ReduceWeightRigidbody(_maxMass);
             hair.transform.parent = _head.transform;
             hair.Join(GetComponent<Rigidbody>());
@@ -42,13 +43,25 @@ public class Hairstyle : MonoBehaviour
         {
             var hairDequeue = _hairs.Dequeue();
             hairDequeue.DestroyHairTip();
-            var newHair = Instantiate(_hair, hairDequeue.hairUp.transform.position, _body.transform.localRotation);
+            var newHair = Instantiate(_hair, hairDequeue.hairUp.transform.position, hairDequeue.AssighIntialRotation());
+            _hairsList.Add(newHair);
             newHair.ReduceWeightRigidbody(_maxMass);
             newHair.Join(hairDequeue.GetComponent<Rigidbody>());
             _hairs.Enqueue(newHair);
-            _hairsList.Add(newHair);
         }
 
         _maxMass -= 1;
+    }
+
+    public void AddNewMaterial(Material material)
+    {
+        if (_hairsList != null)
+        {
+            foreach (var hair in _hairsList)
+            {
+                hair.SetColorMaterial(material);
+                hair.HairTip.SetColorMaterial(material);
+            }
+        }
     }
 }
