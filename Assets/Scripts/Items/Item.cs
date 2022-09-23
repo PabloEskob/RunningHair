@@ -4,7 +4,7 @@ public abstract class Item : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _particleSystem;
 
-    public void Destoy()
+    public void Destroy()
     {
         Destroy(gameObject);
         StartParticles();

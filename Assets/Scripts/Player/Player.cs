@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     {
         if ( other.TryGetComponent(out Item item))
         {
-            item.Destoy();
+            item.Destroy();
             
             if (item.GetComponent<Bottle>())
             {
@@ -17,5 +17,4 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
 }

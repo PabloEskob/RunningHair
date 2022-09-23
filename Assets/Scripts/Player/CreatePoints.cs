@@ -13,7 +13,7 @@ public class CreatePoints : MonoBehaviour
     {
         _radius = gameObject.transform.localScale.z;
         _originPosition = transform.position;
-        List<Vector3> _position = new List<Vector3>();
+        List<Vector3> position = new List<Vector3>();
         Vector3 point = _originPosition;
         float distanceRing = Mathf.PI * 2 * _radius;
         var angle = 360 * Mathf.Deg2Rad;
@@ -30,13 +30,13 @@ public class CreatePoints : MonoBehaviour
                 point.x = x;
                 point.z = z;
 
-                _position.Add(point);
+                position.Add(point);
             }
 
             _radius -= _radiusHair;
             distanceRing = Mathf.PI * 2 * _radius;
         }
 
-        return _position;
+        return position;
     }
 }

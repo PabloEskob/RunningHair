@@ -7,17 +7,34 @@ public class Hairstyle : MonoBehaviour
     [SerializeField] private CreatePoints _createPoints;
     [SerializeField] private Head _head;
     [SerializeField] private Hair _hair;
-    [SerializeField] private Body _body;
     [SerializeField] private int _maxMass;
 
+    private int _squadNumberHair;
+    private int _numberHair;
     private Queue<Hair> _hairs;
     private List<Hair> _hairsList;
+    private Hair _targetHair;
 
     private void Start()
     {
         _hairsList = new List<Hair>();
         _hairs = new Queue<Hair>();
         PutHairRoots();
+    }
+
+    private Hair FindHair(Hair hair, int value)
+    {
+        var squareNumber = hair.SetSquadNumber();
+        var number = hair.SetNumber();
+
+        foreach (var hairs in _hairsList)
+        {
+            if (hairs.FindHair(squareNumber + value, number)!=null)
+            {
+                _targetHair = hairs.FindHair(squareNumber + value, number);
+            }
+        }
+        return _targetHair;
     }
 
     private void PutHairRoots()
@@ -39,11 +56,16 @@ public class Hairstyle : MonoBehaviour
 
     public void PutHair()
     {
+        _numberHair = 0;
+        _squadNumberHair++;
         for (int i = 0; i < _hairs.Count; i++)
         {
+            _numberHair++;
             var hairDequeue = _hairs.Dequeue();
             hairDequeue.DestroyHairTip();
-            var newHair = Instantiate(_hair, hairDequeue.hairUp.transform.position, hairDequeue.AssighIntialRotation());
+            var newHair = Instantiate(_hair, hairDequeue.HairUp.transform.position, hairDequeue.AssighIntialRotation());
+            newHair.Uint(_squadNumberHair, _numberHair);
+            hairDequeue.AllowUseForce(false);
             _hairsList.Add(newHair);
             newHair.ReduceWeightRigidbody(_maxMass);
             newHair.Join(hairDequeue.GetComponent<Rigidbody>());
@@ -53,15 +75,25 @@ public class Hairstyle : MonoBehaviour
         _maxMass -= 1;
     }
 
-    public void AddNewMaterial(Material material)
+    public void AddNewMaterial(Color colorMaterial)
     {
         if (_hairsList != null)
         {
             foreach (var hair in _hairsList)
             {
-                hair.SetColorMaterial(material);
-                hair.HairTip.SetColorMaterial(material);
+                hair.SetColorMaterial(colorMaterial);
+                hair.HairTip.SetColorMaterial(colorMaterial);
             }
         }
+    }
+    
+    public Hair FindNextHair(Hair hair)
+    {
+        return FindHair(hair, 1);
+    }
+
+    public Hair FindPreviosHair(Hair hair)
+    {
+        return FindHair(hair, -1);
     }
 }
