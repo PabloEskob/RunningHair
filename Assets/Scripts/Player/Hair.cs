@@ -82,8 +82,9 @@ public class Hair : MonoBehaviour
         _rigidbody.mass = maxMass;
     }
 
-    public void SetColorMaterial(Color materialColor)
+    public void SetColorMaterial(Material material,Color materialColor)
     {
+        GetComponent<Renderer>().material = material;
         GetComponent<Renderer>().material.color = materialColor;
         _hairTips.SetColorMaterial(materialColor);
     }
@@ -113,7 +114,6 @@ public class Hair : MonoBehaviour
         {
             return this;
         }
-
         return null;
     }
 }

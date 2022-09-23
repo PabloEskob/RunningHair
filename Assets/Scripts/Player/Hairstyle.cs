@@ -75,13 +75,13 @@ public class Hairstyle : MonoBehaviour
         _maxMass -= 1;
     }
 
-    public void AddNewMaterial(Color colorMaterial)
+    public void AddNewMaterial(Material material,Color colorMaterial)
     {
         if (_hairsList != null)
         {
             foreach (var hair in _hairsList)
             {
-                hair.SetColorMaterial(colorMaterial);
+                hair.SetColorMaterial(material,colorMaterial);
                 hair.HairTip.SetColorMaterial(colorMaterial);
             }
         }

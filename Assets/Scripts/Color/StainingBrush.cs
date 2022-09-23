@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class StainingBrush : MonoBehaviour
 {
+    [SerializeField] private Material _material;
     [SerializeField] private Color _materialColor;
     [SerializeField] private Hairstyle _hairstyle;
 
@@ -9,7 +10,7 @@ public class StainingBrush : MonoBehaviour
     {
         if (collision.collider.GetComponent<Hairstyle>())
         {
-            _hairstyle.AddNewMaterial(_materialColor);
+            _hairstyle.AddNewMaterial(_material,_materialColor);
         }
     }
 }

@@ -598,7 +598,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: DREAMTECK_SPLINES;OBI_ONI_SUPPORTED
     4: OBI_ONI_SUPPORTED
-    7: OBI_ONI_SUPPORTED
+    7: OBI_ONI_SUPPORTED;DREAMTECK_SPLINES
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
