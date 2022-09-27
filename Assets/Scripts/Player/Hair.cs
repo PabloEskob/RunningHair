@@ -81,7 +81,7 @@ public class Hair : MonoBehaviour
     {
         _rigidbody.mass = maxMass;
     }
-    
+
     public void ChangeMaterial(Material material)
     {
         GetComponent<Renderer>().material = material;
@@ -108,6 +108,13 @@ public class Hair : MonoBehaviour
         {
             return this;
         }
+
         return null;
+    }
+
+    public void SetGradient(Material materialGradient)
+    {
+      
+        GetComponent<Renderer>().material = materialGradient;
     }
 }

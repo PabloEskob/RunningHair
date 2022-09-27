@@ -70,7 +70,7 @@ public class Hairstyle : MonoBehaviour
             newHair.Join(hairDequeue.GetComponent<Rigidbody>());
             _hairs.Enqueue(newHair);
         }
-
+        
         _maxMass -= 1;
     }
 
@@ -94,5 +94,20 @@ public class Hairstyle : MonoBehaviour
     public Hair FindPreviosHair(Hair hair)
     {
         return FindHair(hair, -1);
+    }
+
+    public List<Hair> FindLastHair()
+    {
+        List<Hair> LastHair = new List<Hair>();
+        
+        foreach (var hair in _hairsList)
+        {
+            if (hair.SetSquadNumber()==_squadNumberHair)
+            {
+                LastHair.Add(hair);
+            }
+        }
+        
+        return LastHair;
     }
 }
