@@ -10,8 +10,8 @@ public class Hair : MonoBehaviour
     [SerializeField] private float _forse;
     [SerializeField] private float _rotateValue;
 
-   [SerializeField] private int _number;
-   [SerializeField] private int _squadNumber;
+    private int _number;
+    private int _squadNumber;
     private Rigidbody _rigidbody;
     private HairTip _hairTips;
 
@@ -81,17 +81,11 @@ public class Hair : MonoBehaviour
     {
         _rigidbody.mass = maxMass;
     }
-
-    public void SetColorMaterial(Material material,Color materialColor)
-    {
-        GetComponent<Renderer>().material = material;
-        GetComponent<Renderer>().material.color = materialColor;
-        _hairTips.SetColorMaterial(materialColor);
-    }
-
+    
     public void ChangeMaterial(Material material)
     {
         GetComponent<Renderer>().material = material;
+        _hairTips.SetColorMaterial(material);
     }
 
     private void CreateHairTip()

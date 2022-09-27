@@ -9,11 +9,11 @@ public class HairTip : MonoBehaviour
         _renderer = GetComponent<Renderer>();
     }
 
-    public void SetColorMaterial(Color materialColor)
+    public void SetColorMaterial(Material materialColor)
     {
         if (_renderer != null)
         {
-            _renderer.material.color = materialColor;
+            _renderer.material = materialColor;
         }
     }
 }

@@ -1,14 +1,22 @@
+using System;
 using UnityEngine;
 
 public class Staining : MonoBehaviour
 {
     [SerializeField] private Material _material;
     [SerializeField] private Hairstyle _hairstyle;
-    [SerializeField] private Color _targetMaterial;
     [SerializeField] private Material _materialDown;
     [SerializeField] private Material _materialUp;
 
     private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.TryGetComponent(out Hair hair))
+        {
+           hair.ChangeMaterial(_material);
+        }
+    }
+
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.TryGetComponent(out Hair hair))
         {
@@ -25,7 +33,7 @@ public class Staining : MonoBehaviour
     {
         if (other.collider.TryGetComponent(out Hair hair))
         {
-            hair.SetColorMaterial(_material,_targetMaterial);
+            hair.SetColorMaterial(_material);
         }
-    }
+    }*/
 }

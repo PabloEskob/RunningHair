@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hairstyle : MonoBehaviour
 {
     [SerializeField] private CreatePoints _createPoints;
-    [SerializeField] private Head _head;
+    [SerializeField] private Player _head;
     [SerializeField] private Hair _hair;
     [SerializeField] private int _maxMass;
 
@@ -43,10 +43,9 @@ public class Hairstyle : MonoBehaviour
 
         foreach (var position in cratePoint)
         {
-            var hair = Instantiate(_hair, position, _hair.AssighIntialRotation());
+            var hair = Instantiate(_hair, position, _hair.AssighIntialRotation(),_head.transform);
             _hairsList.Add(hair);
             hair.ReduceWeightRigidbody(_maxMass);
-            hair.transform.parent = _head.transform;
             hair.Join(GetComponent<Rigidbody>());
             _hairs.Enqueue(hair);
         }
@@ -81,8 +80,8 @@ public class Hairstyle : MonoBehaviour
         {
             foreach (var hair in _hairsList)
             {
-                hair.SetColorMaterial(material,colorMaterial);
-                hair.HairTip.SetColorMaterial(colorMaterial);
+                hair.ChangeMaterial(material);
+                hair.HairTip.SetColorMaterial(material);
             }
         }
     }
