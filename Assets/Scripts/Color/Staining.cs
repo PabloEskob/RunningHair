@@ -4,14 +4,13 @@ public class Staining : MonoBehaviour
 {
     [SerializeField] private Material _material;
     [SerializeField] private Hairstyle _hairstyle;
-    [SerializeField] private Material _materialGradient;
-    
+    [SerializeField] private int _number;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.TryGetComponent(out Hair hair))
         {
-            var previosHair = _hairstyle.FindPreviosHair(hair);
-            previosHair.SetGradient(_materialGradient);
+            hair.ChangeMaterial(_material);
         }
     }
 
@@ -19,7 +18,19 @@ public class Staining : MonoBehaviour
     {
         if (other.collider.TryGetComponent(out Hair hair))
         {
-            hair.ChangeMaterial(_material);
+            SetColorDownHair(hair);
+        }
+    }
+
+    private void SetColorDownHair(Hair hair)
+    {
+        var previosHair = _hairstyle.FindPreviosHair(hair);
+        var rendererHair = previosHair.GetComponent<Renderer>();
+
+        if (previosHair.Renderer.material.color != _material.color)
+        {
+            rendererHair.enabled = false;
+            previosHair.OnEnableMaterial(_number);
         }
     }
 }

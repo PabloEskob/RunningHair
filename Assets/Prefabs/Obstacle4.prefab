@@ -44,10 +44,7 @@ GameObject:
   - component: {fileID: 3273969584092027928}
   - component: {fileID: 8997521151084001103}
   - component: {fileID: 8026021387286714191}
-  - component: {fileID: 8502202594204424182}
-  - component: {fileID: 8502202594204424180}
   - component: {fileID: 8502202594204424176}
-  - component: {fileID: 8502202594204424181}
   m_Layer: 0
   m_Name: Cylinder.002
   m_TagString: Untagged
@@ -118,36 +115,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &8502202594204424182
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2443721900883061922}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!136 &8502202594204424180
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2443721900883061922}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.007040266
-  m_Height: 0.03107524
-  m_Direction: 0
-  m_Center: {x: 0.017, y: 0, z: 0}
 --- !u!114 &8502202594204424176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,23 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 170
   _sideSwirling: {x: 1, y: 0, z: 0}
---- !u!114 &8502202594204424181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2443721900883061922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8d29028d7ea054c9f161e287a5a795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _material: {fileID: 2100000, guid: e0a1878e2d16dbc45b2777429ab7bbb4, type: 2}
-  _hairstyle: {fileID: 0}
-  _materialGradient: {fileID: 2100000, guid: 1e6ba1f46284aa849898e8ff675bcee2, type: 2}
-  _colorUp: {r: 0.6, g: 0.4156863, b: 0.72156864, a: 1}
-  _colorDown: {r: 0.21844478, g: 0.21404415, b: 0.6981132, a: 1}
 --- !u!1 &8448866221939567239
 GameObject:
   m_ObjectHideFlags: 0

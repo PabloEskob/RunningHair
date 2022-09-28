@@ -24,16 +24,17 @@ public class Hairstyle : MonoBehaviour
 
     private Hair FindHair(Hair hair, int value)
     {
-        var squareNumber = hair.SetSquadNumber();
-        var number = hair.SetNumber();
+        var squareNumber = hair.SquadNumber;
+        var number = hair.Number;
 
         foreach (var hairs in _hairsList)
         {
-            if (hairs.FindHair(squareNumber + value, number)!=null)
+            if (hairs.FindHair(squareNumber + value, number) != null)
             {
                 _targetHair = hairs.FindHair(squareNumber + value, number);
             }
         }
+
         return _targetHair;
     }
 
@@ -43,7 +44,7 @@ public class Hairstyle : MonoBehaviour
 
         foreach (var position in cratePoint)
         {
-            var hair = Instantiate(_hair, position, _hair.AssighIntialRotation(),_head.transform);
+            var hair = Instantiate(_hair, position, _hair.AssighIntialRotation(), _head.transform);
             _hairsList.Add(hair);
             hair.ReduceWeightRigidbody(_maxMass);
             hair.Join(GetComponent<Rigidbody>());
@@ -62,52 +63,81 @@ public class Hairstyle : MonoBehaviour
             _numberHair++;
             var hairDequeue = _hairs.Dequeue();
             hairDequeue.DestroyHairTip();
-            var newHair = Instantiate(_hair, hairDequeue.HairUp.transform.position, hairDequeue.AssighIntialRotation());
-            newHair.Uint(_squadNumberHair, _numberHair);
-            hairDequeue.AllowUseForce(false);
-            _hairsList.Add(newHair);
-            newHair.ReduceWeightRigidbody(_maxMass);
-            newHair.Join(hairDequeue.GetComponent<Rigidbody>());
-            _hairs.Enqueue(newHair);
+            CreateNewHair(hairDequeue);
         }
-        
+
         _maxMass -= 1;
     }
 
-    public void AddNewMaterial(Material material,Color colorMaterial)
+    public void AddNewMaterial(Material material)
     {
         if (_hairsList != null)
         {
             foreach (var hair in _hairsList)
             {
                 hair.ChangeMaterial(material);
-                hair.HairTip.SetColorMaterial(material);
+                hair.TargetHairTip.SetNewMaterial(material); ;
             }
         }
-    }
-    
-    public Hair FindNextHair(Hair hair)
-    {
-        return FindHair(hair, 1);
     }
 
     public Hair FindPreviosHair(Hair hair)
     {
         return FindHair(hair, -1);
     }
-
-    public List<Hair> FindLastHair()
+    
+    public void SetGradient(Material materialGreen)
     {
-        List<Hair> LastHair = new List<Hair>();
-        
-        foreach (var hair in _hairsList)
+        var listLastHair = FindLastHair();
+
+        foreach (var hair in listLastHair)
         {
-            if (hair.SetSquadNumber()==_squadNumberHair)
+            var previosHair = FindPreviosHair(hair);
+
+            if (previosHair != null)
             {
-                LastHair.Add(hair);
+                var rendererHair = hair.GetComponent<Renderer>();
+                var rendereHairPrevios = previosHair.GetComponent<Renderer>();
+
+                if (rendereHairPrevios.material.color != rendererHair.material.color)
+                {
+                    if (rendereHairPrevios.material.color == materialGreen.color)
+                    {
+                        rendererHair.enabled = false;
+                        hair.OnEnableMaterial(0);
+                    }
+                    else
+                    {
+                        rendererHair.enabled = false;
+                        hair.OnEnableMaterial(2);
+                    }
+                }
             }
         }
-        
-        return LastHair;
+    }
+
+    private List<Hair> FindLastHair()
+    {
+        List<Hair> lastHair = new List<Hair>();
+
+        foreach (var hair in _hairsList)
+        {
+            if (hair.SquadNumber == _squadNumberHair)
+            {
+                lastHair.Add(hair);
+            }
+        }
+
+        return lastHair;
+    }
+
+    private void CreateNewHair(Hair hairDequeue)
+    {
+        var newHair = Instantiate(_hair, hairDequeue.HairUp.transform.position, hairDequeue.AssighIntialRotation());
+        newHair.Uint(_squadNumberHair, _numberHair);
+        newHair.ReduceWeightRigidbody(_maxMass);
+        newHair.Join(hairDequeue.GetComponent<Rigidbody>());
+        _hairsList.Add(newHair);
+        _hairs.Enqueue(newHair);
     }
 }

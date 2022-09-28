@@ -4,8 +4,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Hairstyle _hairstyle;
-    [SerializeField] private Material _material;
-
+    [SerializeField] private Material _materialGreen;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Item item))
@@ -15,28 +15,7 @@ public class Player : MonoBehaviour
             if (item.GetComponent<Bottle>())
             {
                 _hairstyle.PutHair();
-                SetGradient();
-            }
-        }
-    }
-    
-    private void SetGradient()
-    {
-        var listLastHair = _hairstyle.FindLastHair();
-
-        foreach (var hair in listLastHair)
-        {
-            var previosHair = _hairstyle.FindPreviosHair(hair);
-
-            if (previosHair != null)
-            {
-                var rendererHair = hair.GetComponent<Renderer>();
-                var rendereHairPrevios = previosHair.GetComponent<Renderer>();
-                
-                if (rendereHairPrevios.material.color != rendererHair.material.color)
-                {
-                   previosHair.SetGradient(_material);
-                }
+                _hairstyle.SetGradient(_materialGreen);
             }
         }
     }

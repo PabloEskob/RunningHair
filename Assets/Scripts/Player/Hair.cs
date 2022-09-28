@@ -3,25 +3,31 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterJoint), typeof(Rigidbody))]
 public class Hair : MonoBehaviour
 {
-    [SerializeField] private GameObject _hairUp;
+    [SerializeField] private HairPoint _hairUp;
     [SerializeField] private HairTip _hairTip;
     [SerializeField] private float _minScale;
     [SerializeField] private float _maxScale;
     [SerializeField] private float _forse;
     [SerializeField] private float _rotateValue;
+    [SerializeField] private HairColor[] _hairColors;
 
     private int _number;
     private int _squadNumber;
     private Rigidbody _rigidbody;
-    private HairTip _hairTips;
+    private HairTip _targetHairTip;
+    private Renderer _renderer;
 
-    public GameObject HairUp => _hairUp;
-    public HairTip HairTip => _hairTips;
+    public Renderer Renderer => _renderer;
+    public HairPoint HairUp => _hairUp;
+    public int SquadNumber => _squadNumber;
+    public int Number => _number;
+    public HairTip TargetHairTip => _targetHairTip;
 
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _renderer = GetComponent<Renderer>();
     }
 
     private void Start()
@@ -32,15 +38,12 @@ public class Hair : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (AllowUseForce(true))
-        {
-            _rigidbody.AddForce(new Vector3(0, _forse, 0), ForceMode.VelocityChange);
-        }
+        _rigidbody.AddForce(new Vector3(0, _forse, 0), ForceMode.VelocityChange);
     }
 
     public void DestroyHairTip()
     {
-        Destroy(_hairTips.gameObject);
+        Destroy(_targetHairTip.gameObject);
     }
 
     public Quaternion AssighIntialRotation()
@@ -56,27 +59,12 @@ public class Hair : MonoBehaviour
         _number = number;
     }
 
-    public int SetSquadNumber()
-    {
-        return _squadNumber;
-    }
-
-    public int SetNumber()
-    {
-        return _number;
-    }
-
     public void Join(Rigidbody hair)
     {
         var configurableJoint = GetComponent<CharacterJoint>();
         configurableJoint.connectedBody = hair;
     }
-
-    public bool AllowUseForce(bool allow)
-    {
-        return allow;
-    }
-
+    
     public void ReduceWeightRigidbody(int maxMass)
     {
         _rigidbody.mass = maxMass;
@@ -84,17 +72,24 @@ public class Hair : MonoBehaviour
 
     public void ChangeMaterial(Material material)
     {
-        GetComponent<Renderer>().material = material;
-        _hairTips.SetColorMaterial(material);
+        _renderer.material = material;
+        _targetHairTip.SetNewMaterial(material);
+    }
+
+    public void OnEnableMaterial(int numberColor)
+    {
+        foreach (var hairColor in _hairColors)
+        {
+            _hairColors[numberColor].OnEnableColor();
+        }
     }
 
     private void CreateHairTip()
     {
-        _hairTips = Instantiate(_hairTip, _hairUp.transform.position, Quaternion.identity);
-        _hairTips.transform.parent = _hairUp.transform;
+        _targetHairTip = Instantiate(_hairTip, _hairUp.transform.position, Quaternion.identity);
+        _targetHairTip.transform.parent = _hairUp.transform;
     }
-
-
+    
     private void AssighIntialScale()
     {
         var transformLocalScale = transform.localScale;
@@ -108,13 +103,6 @@ public class Hair : MonoBehaviour
         {
             return this;
         }
-
         return null;
-    }
-
-    public void SetGradient(Material materialGradient)
-    {
-      
-        GetComponent<Renderer>().material = materialGradient;
     }
 }

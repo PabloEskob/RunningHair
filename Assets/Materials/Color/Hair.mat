@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Hair
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
-  m_ShaderKeywords: _CELPRIMARYMODE_SINGLE _TEXTUREBLENDINGMODE_MULTIPLY _UNITYSHADOWMODE_NONE
+  m_ShaderKeywords: DR_VERTEX_COLORS_ON _CELPRIMARYMODE_SINGLE _TEXTUREBLENDINGMODE_MULTIPLY
+    _UNITYSHADOWMODE_NONE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -116,7 +117,7 @@ Material:
     - _UnityShadowMode: 0
     - _UnityShadowPower: 0.291
     - _UnityShadowSharpness: 1
-    - _VertexColorsEnabled: 0
+    - _VertexColorsEnabled: 1
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.6093212, g: 0.36124954, b: 0.7735849, a: 1}
