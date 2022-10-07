@@ -16,7 +16,7 @@ public class CreatePoints : MonoBehaviour
         List<Vector3> position = new List<Vector3>();
         Vector3 point = _originPosition;
         float distanceRing = Mathf.PI * 2 * _radius;
-        var angle = 360 * Mathf.Deg2Rad;
+        var angle = Mathf.PI * 2;
         var ringCount = (int)(distanceRing / (Mathf.PI * 2 * _radiusHair));
 
         for (int j = ringCount; j > 0; j--)

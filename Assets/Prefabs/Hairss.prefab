@@ -99,13 +99,13 @@ Rigidbody:
   m_GameObject: {fileID: 3426088679904090807}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 6
-  m_AngularDrag: 6
+  m_Drag: 8
+  m_AngularDrag: 8
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!144 &-8683903451038676429
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
     type: 3}
   _minScale: 1.7
   _maxScale: 2.2
-  _forse: 0.5
+  _forse: 1
   _rotateValue: 0.25
   _hairColors:
   - {fileID: 2735028980368604244}

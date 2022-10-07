@@ -1,18 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class HairPoint : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class HairPoint : MonoBehaviour{}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-}
+   
+

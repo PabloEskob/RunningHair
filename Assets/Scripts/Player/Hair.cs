@@ -1,4 +1,5 @@
 using UnityEngine;
+using  DG.Tweening;
 
 [RequireComponent(typeof(CharacterJoint), typeof(Rigidbody))]
 public class Hair : MonoBehaviour
@@ -41,6 +42,11 @@ public class Hair : MonoBehaviour
         _rigidbody.AddForce(new Vector3(0, _forse, 0), ForceMode.VelocityChange);
     }
 
+    public void FinishGivingForse(float forse)
+    {
+        _forse = forse;
+    }
+
     public void DestroyHairTip()
     {
         Destroy(_targetHairTip.gameObject);
@@ -52,6 +58,8 @@ public class Hair : MonoBehaviour
         transformRotate.x = Random.Range(-_rotateValue, _rotateValue);
         return transformRotate;
     }
+
+    
 
     public void Uint(int squadNumber, int number)
     {
@@ -65,6 +73,15 @@ public class Hair : MonoBehaviour
         configurableJoint.connectedBody = hair;
     }
     
+    public Hair FindHair(int squareNumber, int number)
+    {
+        if (_squadNumber == squareNumber && _number == number)
+        {
+            return this;
+        }
+        return null;
+    }
+
     public void ReduceWeightRigidbody(int maxMass)
     {
         _rigidbody.mass = maxMass;
@@ -84,25 +101,34 @@ public class Hair : MonoBehaviour
         }
     }
 
+    public void DisableCharacterJoint()
+    {
+        var characterJoint = GetComponent<CharacterJoint>();
+        var characterJointSwingLimitSpring = characterJoint.swingLimitSpring;
+        characterJointSwingLimitSpring.spring = 3;
+        characterJoint.swingLimitSpring = characterJointSwingLimitSpring;
+        var characterJointSwing1Limit = characterJoint.swing1Limit;
+        characterJointSwing1Limit.limit = 3;
+        characterJoint.swing1Limit = characterJointSwing1Limit;
+    }
+
+    public void DisableDrag()
+    {
+        var rigidbody = GetComponent<Rigidbody>();
+        rigidbody.drag = 0;
+        rigidbody.angularDrag = 0;
+    }
+
     private void CreateHairTip()
     {
         _targetHairTip = Instantiate(_hairTip, _hairUp.transform.position, Quaternion.identity);
         _targetHairTip.transform.parent = _hairUp.transform;
     }
-    
+
     private void AssighIntialScale()
     {
         var transformLocalScale = transform.localScale;
         transformLocalScale.y = Random.Range(_minScale, _maxScale);
         transform.localScale = transformLocalScale;
-    }
-
-    public Hair FindHair(int squareNumber, int number)
-    {
-        if (_squadNumber == squareNumber && _number == number)
-        {
-            return this;
-        }
-        return null;
     }
 }

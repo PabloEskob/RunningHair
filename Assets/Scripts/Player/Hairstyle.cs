@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hairstyle : MonoBehaviour
 {
     [SerializeField] private CreatePoints _createPoints;
-    [SerializeField] private Player _head;
+    [SerializeField] private HairMovement _head;
     [SerializeField] private Hair _hair;
     [SerializeField] private int _maxMass;
 
@@ -14,7 +14,7 @@ public class Hairstyle : MonoBehaviour
     private Queue<Hair> _hairs;
     private List<Hair> _hairsList;
     private Hair _targetHair;
-
+    
     private void Start()
     {
         _hairsList = new List<Hair>();
@@ -22,6 +22,7 @@ public class Hairstyle : MonoBehaviour
         PutHairRoots();
     }
 
+    
     private Hair FindHair(Hair hair, int value)
     {
         var squareNumber = hair.SquadNumber;
@@ -40,14 +41,14 @@ public class Hairstyle : MonoBehaviour
 
     private void PutHairRoots()
     {
-        var cratePoint = _createPoints.FindPlaceWithCircle();
+        var createPoint = _createPoints.FindPlaceWithCircle();
 
-        foreach (var position in cratePoint)
+        foreach (var position in createPoint)
         {
             var hair = Instantiate(_hair, position, _hair.AssighIntialRotation(), _head.transform);
             _hairsList.Add(hair);
             hair.ReduceWeightRigidbody(_maxMass);
-            hair.Join(GetComponent<Rigidbody>());
+            hair.Join(_head.GetComponent<Rigidbody>());
             _hairs.Enqueue(hair);
         }
 
@@ -76,7 +77,7 @@ public class Hairstyle : MonoBehaviour
             foreach (var hair in _hairsList)
             {
                 hair.ChangeMaterial(material);
-                hair.TargetHairTip.SetNewMaterial(material); ;
+                hair.TargetHairTip.SetNewMaterial(material);
             }
         }
     }
@@ -85,7 +86,7 @@ public class Hairstyle : MonoBehaviour
     {
         return FindHair(hair, -1);
     }
-    
+
     public void SetGradient(Material materialGreen)
     {
         var listLastHair = FindLastHair();
@@ -116,7 +117,17 @@ public class Hairstyle : MonoBehaviour
         }
     }
 
-    private List<Hair> FindLastHair()
+    public void Finish(float forse)
+    {
+        foreach (var hair in _hairsList)
+        {
+            hair.FinishGivingForse(forse);
+            hair.DisableCharacterJoint();
+            hair.DisableDrag();
+        }
+    }
+
+    public List<Hair> FindLastHair()
     {
         List<Hair> lastHair = new List<Hair>();
 
@@ -133,7 +144,7 @@ public class Hairstyle : MonoBehaviour
 
     private void CreateNewHair(Hair hairDequeue)
     {
-        var newHair = Instantiate(_hair, hairDequeue.HairUp.transform.position, hairDequeue.AssighIntialRotation());
+        var newHair = Instantiate(_hair, hairDequeue.HairUp.transform.position, hairDequeue.AssighIntialRotation(),_head.transform);
         newHair.Uint(_squadNumberHair, _numberHair);
         newHair.ReduceWeightRigidbody(_maxMass);
         newHair.Join(hairDequeue.GetComponent<Rigidbody>());
