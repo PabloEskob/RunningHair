@@ -1,0 +1,235 @@
+fileFormatVersion: 2
+guid: 2748d98f7fef50d46ab2cb1508185ab9
+ModelImporter:
+  serializedVersion: 21202
+  internalIDToNameTable:
+  - first:
+      74: -3364268633828506030
+    second: Plane|Cylinder.001Action
+  - first:
+      74: 863829477933589295
+    second: Plane|Cylinder.002Action
+  - first:
+      74: 4892528188921370966
+    second: Plane|Cylinder.002Action.001
+  - first:
+      74: 7504885988192499931
+    second: Plane|Cylinder.002Action.002
+  - first:
+      74: 4061344871129803936
+    second: Plane|Cylinder.002Action.003
+  - first:
+      74: 8316072729480667257
+    second: Plane|Cylinder.002Action.004
+  - first:
+      74: 4349475083362961041
+    second: Plane|Cylinder.004Action
+  - first:
+      74: 7381458399111861055
+    second: Plane|Cylinder.004Action.001
+  - first:
+      74: -764449296475947407
+    second: Plane|Cylinder.004Action.002
+  - first:
+      74: 2418431585831821929
+    second: Plane|Plane.001Action
+  - first:
+      74: -5187248419258813496
+    second: Plane|PlaneAction
+  - first:
+      74: 5353196078017212688
+    second: Plane.001|Cylinder.001Action
+  - first:
+      74: -6693442850799857974
+    second: Plane.001|Cylinder.002Action
+  - first:
+      74: 1690354463957529022
+    second: Plane.001|Cylinder.002Action.001
+  - first:
+      74: -3091880776083598560
+    second: Plane.001|Cylinder.002Action.002
+  - first:
+      74: -5367713263328794208
+    second: Plane.001|Cylinder.002Action.003
+  - first:
+      74: 4129143394835511856
+    second: Plane.001|Cylinder.002Action.004
+  - first:
+      74: 1997358894924384386
+    second: Plane.001|Cylinder.004Action
+  - first:
+      74: -6053838763980131584
+    second: Plane.001|Cylinder.004Action.001
+  - first:
+      74: 6123355541489768544
+    second: Plane.001|Cylinder.004Action.002
+  - first:
+      74: -2858551162337178960
+    second: Plane.001|Plane.001Action
+  - first:
+      74: -2193830699095671242
+    second: Plane.001|PlaneAction
+  - first:
+      74: 973831734739876959
+    second: OpenLeft
+  - first:
+      74: -8234327681370593872
+    second: OpenRight
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: OpenLeft
+      takeName: Plane|PlaneAction
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 99
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: OpenRight
+      takeName: Plane.001|Plane.001Action
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 99
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 2.1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 2.1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
